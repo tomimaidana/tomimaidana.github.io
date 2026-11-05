@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instructivo · CaloriBot</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/instructivo.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-icon">🤖</span> CaloriBot
+      </a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html#problema" class="nav__link">Problemática</a></li>
+        <li><a href="index.html#solucion" class="nav__link">Solución</a></li>
+        <li><a href="index.html#componentes" class="nav__link">Componentes</a></li>
+        <li><a href="instructivo.html" class="nav__link instructivo-btn">📋 Instructivo</a></li>
+      </ul>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+    </nav>
+  </header>
+
+  <main class="instructivo-main">
+
+    <!-- PORTADA -->
+    <section class="inst-hero">
+      <div class="container inst-hero__content">
+        <span class="section__tag">Guía paso a paso</span>
+        <h1>Instructivo de construcción<br/><span class="highlight">CaloriBot</span></h1>
+        <p class="inst-hero__sub">
+          Seguí estos pasos para armar tu propio contador de calorías con micro:bit.
+          No necesitás conocimientos previos de electrónica.
+        </p>
+        <div class="inst-hero__meta">
+          <span>⏱ Tiempo estimado: 30–45 min</span>
+          <span>📶 Dificultad: Principiante</span>
+          <span>👥 Matthiess · Abbruzzese · Maidana</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container inst-body">
+
+      <!-- ÍNDICE -->
+      <nav class="inst-index" aria-label="Índice del instructivo">
+        <h2>Índice</h2>
+        <ol>
+          <li><a href="#materiales">Materiales necesarios</a></li>
+          <li><a href="#circuito">Armado del circuito</a></li>
+          <li><a href="#codigo">Cargar el código</a></li>
+          <li><a href="#uso">Cómo usar CaloriBot</a></li>
+          <li><a href="#tips">Consejos y solución de problemas</a></li>
+        </ol>
+      </nav>
+
+      <!-- PASO 1: MATERIALES -->
+      <section class="inst-step" id="materiales">
+        <div class="inst-step__header">
+          <div class="step-num">1</div>
+          <h2>Materiales necesarios</h2>
+        </div>
+        <p class="step-desc">
+          Antes de empezar, reuní todos los componentes. Podés conseguirlos en tiendas de electrónica o kits de robótica escolar.
+        </p>
+        <div class="materiales-grid">
+          <div class="material-item">
+            <div class="mat-icon">🤖</div>
+            <div>
+              <strong>1 × micro:bit v2</strong>
+              <span>Placa principal del proyecto (con pantalla LED y botones integrados)</span>
+            </div>
+          </div>
+          <div class="material-item">
+            <div class="mat-icon">🔌</div>
+            <div>
+              <strong>1 × Breadboard (placa de pruebas)</strong>
+              <span>Para conectar componentes sin soldar</span>
+            </div>
+          </div>
+          <div class="material-item">
+            <div class="mat-icon">🟡</div>
+            <div>
+              <strong>1 × Botón pulsador externo</strong>
+              <span>El amarillo del kit. Se conecta al Pin 1 de la micro:bit</span>
+            </div>
+          </div>
+          <div class="material-item">
+            <div class="mat-icon">🔗</div>
+            <div>
+              <strong>Cables dupont / jumpers</strong>
+              <span>Para conectar el botón a la placa (macho-macho)</span>
+            </div>
+          </div>
+          <div class="material-item">
+            <div class="mat-icon">💻</div>
+            <div>
+              <strong>1 × Cable USB (micro-USB)</strong>
+              <span>Para cargar el programa y alimentar la placa</span>
+            </div>
+          </div>
+          <div class="material-item">
+            <div class="mat-icon">🖥️</div>
+            <div>
+              <strong>1 × Computadora</strong>
+              <span>Para programar con MakeCode (editor online, no requiere instalación)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PASO 2: CIRCUITO -->
+      <section class="inst-step" id="circuito">
+        <div class="inst-step__header">
+          <div class="step-num">2</div>
+          <h2>Armado del circuito</h2>
+        </div>
+        <p class="step-desc">
+          El circuito es muy sencillo. Los botones A y B ya están integrados en la micro:bit.
+          Solo necesitás conectar el botón externo (guardar) al Pin 1.
+        </p>
+
+        <div class="sub-steps">
+          <div class="sub-step">
+            <div class="sub-step__num">2.1</div>
+            <div class="sub-step__content">
+              <h3>Colocar la micro:bit en la breadboard</h3>
+              <p>
+                Insertá los pines de la micro:bit en la breadboard para que quede fija.
+                Asegurate de que los pines queden bien asentados.
+              </p>
+              <div class="tip-box">
+                💡 <strong>Tip:</strong> Los pines grandes (0, 1, 2, 3V y GND) son los que usaremos.
+                Son los que tienen el agujero grande en la parte inferior de la placa.
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">2.2</div>
+            <div class="sub-step__content">
+              <h3>Conectar el botón externo al Pin 1</h3>
+              <p>Usá los cables jumper para conectar el botón pulsador así:</p>
+              <div class="conexion-tabla">
+                <div class="conexion-row conexion-row--header">
+                  <span>Desde (botón)</span>
+                  <span>→</span>
+                  <span>Hacia (micro:bit)</span>
+                </div>
+                <div class="conexion-row">
+                  <span>Terminal 1 del botón</span>
+                  <span>→</span>
+                  <span class="dest dest--pin"><strong>Pin 1</strong></span>
+                </div>
+                <div class="conexion-row">
+                  <span>Terminal 2 del botón</span>
+                  <span>→</span>
+                  <span class="dest dest--gnd"><strong>GND</strong> (tierra)</span>
+                </div>
+              </div>
+              <div class="warning-box">
+                ⚠️ <strong>¡Importante!</strong> En nuestra experiencia, conectar al "Pin 2" hizo que el botón no funcionara.
+                Asegurate de usar el <strong>Pin 1</strong>.
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">2.3</div>
+            <div class="sub-step__content">
+              <h3>Verificar conexiones</h3>
+              <p>Antes de continuar, revisá que:</p>
+              <ul class="check-list">
+                <li>✅ El botón externo esté bien insertado en la breadboard</li>
+                <li>✅ Un cable vaya del botón al Pin 1 de la micro:bit</li>
+                <li>✅ Otro cable vaya del botón al GND de la micro:bit</li>
+                <li>✅ La micro:bit esté firmemente colocada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PASO 3: CÓDIGO -->
+      <section class="inst-step" id="codigo">
+        <div class="inst-step__header">
+          <div class="step-num">3</div>
+          <h2>Cargar el código en MakeCode</h2>
+        </div>
+        <p class="step-desc">
+          El programa se escribe con bloques visuales en MakeCode. Seguí estos pasos:
+        </p>
+
+        <div class="sub-steps">
+          <div class="sub-step">
+            <div class="sub-step__num">3.1</div>
+            <div class="sub-step__content">
+              <h3>Abrir MakeCode</h3>
+              <p>
+                Entrá a <strong>makecode.microbit.org</strong> desde cualquier navegador.
+                Creá un nuevo proyecto y poné el nombre: <em>"CaloriBot"</em>.
+              </p>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.2</div>
+            <div class="sub-step__content">
+              <h3>Bloque: Al iniciar</h3>
+              <p>Este bloque corre una sola vez cuando se enciende la placa. Inicializa el contador.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">🟥 al iniciar</div>
+                <div class="block block--action">fijar <em>step count</em> a <strong>0</strong></div>
+                <div class="block block--action">fijar <em>step length</em> a <strong>100</strong></div>
+                <div class="block block--action">mostrar número <strong>0</strong></div>
+                <div class="block block--action">mostrar cadena <strong>"KCAL"</strong></div>
+                <div class="block block--action">reproducir secuencia tono <em>Do bajo</em> durante <em>1/2 pulso</em> en modo <em>hasta que termine</em></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.3</div>
+            <div class="sub-step__content">
+              <h3>Bloque: Botón B (derecho → +100 kcal)</h3>
+              <p>Al presionar el botón B, suma 100 calorías y muestra el nuevo total.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">🟥 al presionarse el botón B ▶</div>
+                <div class="block block--action">reproducir secuencia tono <em>Do bajo</em> durante <em>1/2 pulso</em> en modo <em>hasta que termine</em></div>
+                <div class="block block--action">mostrar ícono <strong>✓</strong></div>
+                <div class="block block--action">fijar <em>step count</em> a <em>step count</em> + <em>step length</em></div>
+                <div class="block block--action">mostrar número <em>step count</em></div>
+                <div class="block block--action">mostrar cadena <strong>"KCAL"</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.4</div>
+            <div class="sub-step__content">
+              <h3>Bloque: Botón A (izquierdo → −100 kcal)</h3>
+              <p>Al presionar el botón A, resta 100 calorías para corregir errores.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">🟥 al presionarse el botón A ◀</div>
+                <div class="block block--action">reproducir secuencia tono <em>Do bajo</em> durante <em>1/2 pulso</em> en modo <em>hasta que termine</em></div>
+                <div class="block block--action">mostrar ícono <strong>✓</strong></div>
+                <div class="block block--action">fijar <em>step count</em> a <em>step count</em> − <em>step length</em></div>
+                <div class="block block--action">mostrar número <em>step count</em></div>
+                <div class="block block--action">mostrar cadena <strong>"KCAL"</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.5</div>
+            <div class="sub-step__content">
+              <h3>Bloque: Pin 1 (botón externo → guardar)</h3>
+              <p>Al presionar el botón externo conectado al Pin 1, muestra el total acumulado para anotarlo.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">🟥 al pulsar ▼ el logotipo</div>
+                <div class="block block--action">reproducir secuencia tono <em>Do bajo</em> durante <em>1/2 pulso</em> en modo hasta que termine</div>
+                <div class="block block--action">mostrar ícono <strong>⬛</strong></div>
+                <div class="block block--action">mostrar número <em>step count</em></div>
+                <div class="block block--action">mostrar cadena <strong>"KCAL"</strong></div>
+              </div>
+              <div class="tip-box">
+                💡 <strong>Tip:</strong> Anotá el total en un cuaderno o planilla de Excel para llevar un registro semanal o mensual.
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.6</div>
+            <div class="sub-step__content">
+              <h3>Bloque: Pin 2 → Lectura digital (Pin 1 en código)</h3>
+              <p>Este bloque detecta cuando se presiona el botón externo conectado al Pin 1.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">🟥 si lectura digital pin P2 = 1 entonces</div>
+                <div class="block block--action">reproducir secuencia tono <em>Do bajo</em></div>
+                <div class="block block--action">mostrar ícono <strong>⬛</strong></div>
+                <div class="block block--action">mostrar número <em>step count</em></div>
+                <div class="block block--action">mostrar cadena <strong>"KCAL"</strong></div>
+              </div>
+              <div class="warning-box">
+                ⚠️ <strong>Nota importante:</strong> En la versión que probamos, el código usaba "pin 2" pero el cable estaba conectado a "pin 1".
+                Asegurate de que el pin en el código coincida con el físico. Nosotros usamos <strong>pin 1</strong> en el hardware.
+              </div>
+            </div>
+          </div>
+
+          <div class="sub-step">
+            <div class="sub-step__num">3.7</div>
+            <div class="sub-step__content">
+              <h3>Descargar y cargar en la micro:bit</h3>
+              <ul class="check-list">
+                <li>1. Hacé click en el botón <strong>"Descargar"</strong> en MakeCode (botón azul abajo a la izquierda)</li>
+                <li>2. Se descarga un archivo <code>.hex</code> a tu computadora</li>
+                <li>3. Conectá la micro:bit por USB — aparece como unidad de almacenamiento</li>
+                <li>4. Arrastrá el archivo <code>.hex</code> a la carpeta de la micro:bit</li>
+                <li>5. La micro:bit parpadeará en naranja mientras carga</li>
+                <li>6. Cuando termine, el programa arranca automáticamente ✅</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PASO 4: USO -->
+      <section class="inst-step" id="uso">
+        <div class="inst-step__header">
+          <div class="step-num">4</div>
+          <h2>Cómo usar CaloriBot</h2>
+        </div>
+        <p class="step-desc">
+          Una vez cargado el programa, el robot está listo. Usalo durante el día así:
+        </p>
+
+        <div class="uso-cards">
+          <div class="uso-card">
+            <div class="uso-num uso--green">▶</div>
+            <h3>Comiste algo</h3>
+            <p>Presioná el <strong>botón B (derecho)</strong>. Suma 100 kcal al contador. La pantalla muestra el nuevo total.</p>
+          </div>
+          <div class="uso-card">
+            <div class="uso-num uso--red">◀</div>
+            <h3>Te equivocaste</h3>
+            <p>Presioná el <strong>botón A (izquierdo)</strong>. Resta 100 kcal para corregir el registro.</p>
+          </div>
+          <div class="uso-card">
+            <div class="uso-num uso--blue">●</div>
+            <h3>Fin del día</h3>
+            <p>Presioná el <strong>botón externo (amarillo)</strong>. Muestra el total para que lo anotes en tu cuaderno o planilla.</p>
+          </div>
+          <div class="uso-card">
+            <div class="uso-num uso--orange">↺</div>
+            <h3>Nuevo día</h3>
+            <p>Tocá el <strong>logo de la micro:bit</strong> (botón táctil superior). Reinicia el contador a 0.</p>
+          </div>
+        </div>
+
+        <div class="ejemplo-uso">
+          <h3>📋 Ejemplo de uso diario</h3>
+          <div class="uso-timeline">
+            <div class="tl-item">
+              <span class="tl-hora">8:00 AM</span>
+              <span class="tl-accion">Desayuno: 4 × B = <strong>400 kcal</strong></span>
+            </div>
+            <div class="tl-item">
+              <span class="tl-hora">12:30 PM</span>
+              <span class="tl-accion">Almuerzo: 7 × B = <strong>+700 kcal → 1100 kcal</strong></span>
+            </div>
+            <div class="tl-item">
+              <span class="tl-hora">4:00 PM</span>
+              <span class="tl-accion">Merienda: 3 × B = <strong>+300 kcal → 1400 kcal</strong></span>
+            </div>
+            <div class="tl-item">
+              <span class="tl-hora">9:00 PM</span>
+              <span class="tl-accion">Cena: 6 × B = <strong>+600 kcal → 2000 kcal</strong></span>
+            </div>
+            <div class="tl-item tl-item--save">
+              <span class="tl-hora">9:30 PM</span>
+              <span class="tl-accion">💾 Botón externo → <strong>Guardado: 2000 kcal</strong></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PASO 5: TIPS -->
+      <section class="inst-step" id="tips">
+        <div class="inst-step__header">
+          <div class="step-num">5</div>
+          <h2>Consejos y solución de problemas</h2>
+        </div>
+
+        <div class="tips-grid">
+          <div class="tip-card">
+            <span class="tip-emoji">🔌</span>
+            <h3>El botón externo no responde</h3>
+            <p>Verificá que el cable esté conectado al <strong>Pin 1</strong> (no al Pin 2). Ese fue nuestro error durante el testeo y se solucionó cambiando el pin.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-emoji">📺</span>
+            <h3>La pantalla no muestra nada</h3>
+            <p>Desconectá y volvé a conectar el USB. Si sigue igual, cargá el programa nuevamente desde MakeCode.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-emoji">📊</span>
+            <h3>Para un seguimiento más preciso</h3>
+            <p>Cada presión del botón equivale a 100 kcal. Si comiste algo de ~250 kcal, presionás 2 veces y aceptás la diferencia de 50 kcal como margen.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-emoji">📒</span>
+            <h3>Llevar registro semanal</h3>
+            <p>Usá el botón de guardado cada noche y anotá el total en una planilla de Excel o Google Sheets para ver tu evolución.</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /container -->
+
+    <!-- CTA volver -->
+    <div class="inst-footer-cta">
+      <div class="container" style="text-align:center">
+        <p>¿Querés ver más información sobre la problemática y el robot?</p>
+        <a href="index.html" class="btn btn--primary btn--large">← Volver al sitio principal</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__content">
+      <div class="footer__logo">🤖 CaloriBot</div>
+      <div class="footer__info">
+        <p><strong>TP Integrador · TIC 4°A · Colegio Fasta · 2026</strong></p>
+        <p>Matthiess · Abbruzzese · Maidana | Prf. Valentina Francesch</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaloriBot | Contador de Calorías con micro:bit</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#inicio" class="nav__logo">
+        <span class="logo-icon">🤖</span> CaloriBot
+      </a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#problema" class="nav__link">Problemática</a></li>
+        <li><a href="#solucion" class="nav__link">Solución</a></li>
+        <li><a href="#prototipo" class="nav__link">Prototipo</a></li>
+        <li><a href="#componentes" class="nav__link">Componentes</a></li>
+        <li><a href="#instructivo" class="nav__link instructivo-btn">📋 Instructivo</a></li>
+      </ul>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <div class="hero__bg-shapes">
+        <div class="shape shape--1"></div>
+        <div class="shape shape--2"></div>
+        <div class="shape shape--3"></div>
+      </div>
+      <div class="container hero__content">
+        <div class="hero__text">
+          <span class="hero__badge">Proyecto Robótica · 4°A · 2026</span>
+          <h1 class="hero__title">
+            Controlá tus calorías <br/><span class="highlight">sin el celular</span>
+          </h1>
+          <p class="hero__subtitle">
+            CaloriBot es un dispositivo físico basado en micro:bit que te permite
+            registrar tus calorías consumidas durante el día de forma rápida, simple
+            y sin depender de internet o aplicaciones.
+          </p>
+          <div class="hero__cta">
+            <a href="#solucion" class="btn btn--primary">Conocé el robot</a>
+            <a href="#instructivo" class="btn btn--outline">Ver instructivo</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="microbit-card">
+            <div class="microbit-screen">
+              <div class="microbit-display" id="microbit-display">
+                <span class="calorie-count" id="calorie-display">0</span>
+                <span class="kcal-label">KCAL</span>
+              </div>
+            </div>
+            <div class="microbit-buttons">
+              <button class="mb-btn mb-btn--left" id="btn-left" title="Restar 100 kcal">◀ −100</button>
+              <div class="mb-logo" id="btn-logo" title="Reiniciar">↺</div>
+              <button class="mb-btn mb-btn--right" id="btn-right" title="Sumar 100 kcal">+100 ▶</button>
+            </div>
+            <button class="mb-btn--center" id="btn-center">💾 Guardar día</button>
+            <div class="mb-label">micro:bit CaloriBot · Simulación interactiva</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONCIENTIZACIÓN / PROBLEMA ===== -->
+    <section class="problema section" id="problema">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">La problemática</span>
+          <h2 class="section__title">¿Por qué nos cuesta comer sano?</h2>
+          <p class="section__subtitle">
+            Elegimos el lineamiento de <strong>salud y bienestar</strong>, enfocándonos
+            en los hábitos alimenticios saludables.
+          </p>
+        </div>
+
+        <div class="problema__cards">
+          <div class="problem-card">
+            <div class="problem-card__icon">📊</div>
+            <h3>No registramos lo que comemos</h3>
+            <p>Las personas generalmente no llevan cuenta de su consumo calórico diario, lo que lleva a comer más o menos de lo necesario sin darse cuenta.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card__icon">📱</div>
+            <h3>Las apps son poco prácticas</h3>
+            <p>Muchas aplicaciones requieren celular, conexión a internet y tiempo para buscar cada alimento. Esto hace que la gente abandone el seguimiento.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card__icon">❤️</div>
+            <h3>Impacto real en la salud</h3>
+            <p>El descontrol calórico afecta la salud, el rendimiento deportivo, la concentración en el estudio y el desempeño laboral.</p>
+          </div>
+        </div>
+
+        <div class="problema__ejemplo">
+          <div class="ejemplo-card">
+            <div class="ejemplo-icon">💡</div>
+            <div class="ejemplo-content">
+              <h3>Un caso concreto</h3>
+              <p>
+                Una persona tiene como objetivo consumir <strong>2.000 calorías por día</strong>.
+                Durante el desayuno consume 400, en el almuerzo 700 y luego distintos snacks durante
+                la tarde. <strong>Al no llevar ningún registro</strong>, le resulta difícil saber
+                cuántas calorías lleva consumidas y si puede comer más sin superar su objetivo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-num">72%</span>
+            <span class="stat-desc">de las personas no registran lo que comen a diario</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">2000</span>
+            <span class="stat-desc">kcal es el promedio diario recomendado para adultos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">+30%</span>
+            <span class="stat-desc">de mejora en hábitos con seguimiento consciente de la alimentación</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOLUCIÓN / ROBOT ===== -->
+    <section class="solucion section" id="solucion">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">La solución</span>
+          <h2 class="section__title">CaloriBot: tu contador de calorías físico</h2>
+          <p class="section__subtitle">
+            Nuestro robot busca ayudar a personas que quieren mantener una alimentación más saludable
+            pero les cuesta controlar cuántas calorías consumen durante el día.
+          </p>
+        </div>
+
+        <div class="solucion__grid">
+          <div class="solucion__descripcion">
+            <p class="solucion__parrafo">
+              Para resolver este problema, nuestro robot lleva un <strong>conteo de las calorías consumidas</strong>
+              a lo largo del día. Funciona mediante tres botones y es completamente autónomo: no necesita
+              celular, internet ni aplicaciones.
+            </p>
+            <div class="botones-lista">
+              <div class="boton-item boton-item--right">
+                <div class="boton-badge badge--green">▶ Botón derecho</div>
+                <p><strong>+100 kcal</strong> — Se presiona cada vez que se consume algo. Suma 100 calorías al contador y muestra el nuevo total en la pantalla.</p>
+              </div>
+              <div class="boton-item boton-item--left">
+                <div class="boton-badge badge--red">◀ Botón izquierdo</div>
+                <p><strong>−100 kcal</strong> — Para corregir errores. Resta 100 calorías si el usuario se equivoca o quiere ajustar el registro.</p>
+              </div>
+              <div class="boton-item boton-item--center">
+                <div class="boton-badge badge--blue">● Botón central (externo)</div>
+                <p><strong>Guardar</strong> — Guarda el total del día para anotarlo y compararlo con el objetivo diario. Permite llevar un control semanal o mensual.</p>
+              </div>
+              <div class="boton-item boton-item--logo">
+                <div class="boton-badge badge--orange">↺ Logo (botón digital)</div>
+                <p><strong>Reiniciar</strong> — Resetea el contador para comenzar un nuevo día desde cero.</p>
+              </div>
+            </div>
+          </div>
+          <div class="solucion__visual">
+            <div class="robot-diagram">
+              <div class="diagram-microbit">
+                <div class="dm-screen">pantalla LED</div>
+                <div class="dm-buttons">
+                  <div class="dm-btn dm-btn--a">A<br/><small>−100</small></div>
+                  <div class="dm-logo">⬛</div>
+                  <div class="dm-btn dm-btn--b">B<br/><small>+100</small></div>
+                </div>
+                <div class="dm-pin">Pin 1<br/><small>botón guardar</small></div>
+                <div class="dm-label">micro:bit</div>
+              </div>
+              <div class="diagram-arrows">
+                <div class="d-arrow">🔊 Buzzer: confirma cada acción</div>
+                <div class="d-arrow">📺 Pantalla: muestra total en tiempo real</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="target-box">
+          <div class="target-icon">🎯</div>
+          <div>
+            <h3>¿A quién ayuda?</h3>
+            <p>
+              Está dirigido a <strong>estudiantes, deportistas</strong> o cualquier persona interesada en mejorar
+              sus hábitos alimenticios sin depender del celular. La necesidad real: contar con una herramienta
+              <strong>accesible, rápida y fácil de usar</strong> que permita registrar calorías y tomar mejores
+              decisiones alimenticias durante el día.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROTOTIPO ===== -->
+    <section class="prototipo section" id="prototipo">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">El prototipo</span>
+          <h2 class="section__title">El robot en funcionamiento</h2>
+        </div>
+
+        <div class="prototipo__grid">
+          <div class="prototipo__foto">
+            <div class="foto-placeholder foto-placeholder--img">
+              <img src="img/robot.jpg" alt="CaloriBot — micro:bit con breadboard y botón amarillo" />
+            </div>
+            <p class="foto-caption">Robot CaloriBot — micro:bit con breadboard y botón externo (pin 1)</p>
+          </div>
+
+          <div class="prototipo__info">
+            <div class="makecode-box">
+              <h3>🧩 Programado en MakeCode</h3>
+              <p>El robot fue programado con bloques visuales en <strong>Microsoft MakeCode</strong>, 
+              el entorno de programación oficial de micro:bit.</p>
+              <div class="code-blocks-visual">
+                <div class="block block--event">al iniciar</div>
+                <div class="block block--action">fijar step count = 0</div>
+                <div class="block block--action">fijar step length = 100</div>
+                <div class="block block--action">mostrar número 0</div>
+                <div class="block block--action">mostrar cadena "KCAL"</div>
+                <div class="block block--event mt">al presionar botón B ▶</div>
+                <div class="block block--action">reproducir sonido</div>
+                <div class="block block--action">mostrar ícono ✓</div>
+                <div class="block block--action">step count += step length</div>
+                <div class="block block--action">mostrar número step count</div>
+                <div class="block block--action">mostrar cadena "KCAL"</div>
+                <div class="block block--event mt">al presionar botón A ◀</div>
+                <div class="block block--action">reproducir sonido</div>
+                <div class="block block--action">mostrar ícono ✓</div>
+                <div class="block block--action">step count −= step length</div>
+                <div class="block block--action">mostrar número step count</div>
+                <div class="block block--action">mostrar cadena "KCAL"</div>
+              </div>
+            </div>
+            <div class="testeo-box">
+              <h3>✅ Resultado del testeo</h3>
+              <p>
+                Durante las pruebas, el robot respondió correctamente. Cada vez que se presionaba
+                el botón derecho, el contador sumaba 100 calorías y la pantalla mostraba el nuevo
+                total de forma inmediata. El botón central guardó correctamente el registro del día.
+                La música confirmó cada acción realizada.
+              </p>
+              <div class="bug-box">
+                <span class="bug-label">🐛 Bug resuelto</span>
+                <p>El botón externo no funcionaba porque el código usaba "pin 2" en lugar de "pin 1". 
+                Luego de múltiples intentos, se solucionó cambiando el pin y el botón quedó operativo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPONENTES ===== -->
+    <section class="componentes section" id="componentes">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__tag">Componentes</span>
+          <h2 class="section__title">Materiales utilizados</h2>
+        </div>
+
+        <div class="componentes__grid">
+          <div class="componente-card">
+            <div class="comp-icon">🤖</div>
+            <h3>micro:bit v2</h3>
+            <span class="comp-type">Microcontrolador</span>
+            <p>Placa principal del proyecto. Contiene la pantalla LED de 5×5, los botones A y B integrados, el buzzer y la capacidad de programación por bloques.</p>
+          </div>
+          <div class="componente-card">
+            <div class="comp-icon">🟡</div>
+            <h3>Botón externo amarillo</h3>
+            <span class="comp-type">Sensor de entrada · Pin 1</span>
+            <p>Botón físico conectado al pin 1 de la placa. Funciona como el "botón guardar" para registrar el total de calorías del día.</p>
+          </div>
+          <div class="componente-card">
+            <div class="comp-icon">🔌</div>
+            <h3>Breadboard</h3>
+            <span class="comp-type">Placa de pruebas</span>
+            <p>Usada para conectar el botón externo a la placa micro:bit sin necesidad de soldar. Permite modificar el circuito fácilmente.</p>
+          </div>
+          <div class="componente-card">
+            <div class="comp-icon">📺</div>
+            <h3>Pantalla LED micro:bit</h3>
+            <span class="comp-type">Actuador de salida</span>
+            <p>Muestra el total de calorías acumuladas durante el día en tiempo real. También muestra íconos de confirmación ante cada acción.</p>
+          </div>
+          <div class="componente-card">
+            <div class="comp-icon">🔊</div>
+            <h3>Buzzer (integrado)</h3>
+            <span class="comp-type">Actuador de salida</span>
+            <p>Emite un sonido cada vez que se presiona un botón o se envían datos. Confirma que la acción fue registrada correctamente.</p>
+          </div>
+          <div class="componente-card">
+            <div class="comp-icon">🔋</div>
+            <h3>Cable USB</h3>
+            <span class="comp-type">Alimentación</span>
+            <p>Proporciona energía al dispositivo durante el uso. También se usa para cargar el programa desde la computadora a la placa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INSTRUCTIVO (ENLACE) ===== -->
+    <section class="instructivo-cta section" id="instructivo">
+      <div class="container">
+        <div class="instructivo-box">
+          <div class="instructivo-box__text">
+            <span class="section__tag">Instructivo</span>
+            <h2>¿Querés armar tu propio CaloriBot?</h2>
+            <p>Creamos una guía completa con todos los pasos para que puedas reproducir 
+            el robot en casa o en el aula. Incluye lista de materiales, conexiones del 
+            circuito y el código en MakeCode.</p>
+            <a href="instructivo.html" class="btn btn--primary btn--large">📋 Ver instructivo completo</a>
+          </div>
+          <div class="instructivo-box__visual">
+            <div class="steps-preview">
+              <div class="step-prev"><span>1</span> Reuní los materiales</div>
+              <div class="step-prev"><span>2</span> Armá el circuito</div>
+              <div class="step-prev"><span>3</span> Cargá el código</div>
+              <div class="step-prev"><span>4</span> ¡Probá el robot!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__content">
+      <div class="footer__logo">🤖 CaloriBot</div>
+      <div class="footer__info">
+        <p><strong>Trabajo Práctico Integrador · Tecnologías de la Información y Comunicación</strong></p>
+        <p>4° año A · Colegio Fasta San Vicente de Paúl · 2026</p>
+        <p>Matthiess · Abbruzzese · Maidana</p>
+        <p>Profesora: Valentina Francesch</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
